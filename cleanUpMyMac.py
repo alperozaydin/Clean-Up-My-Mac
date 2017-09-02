@@ -1,6 +1,5 @@
-# Alper Ozaydin
-# El Capitan 10.11.6
-# CleanUpMyMac
+__author__ = "Alper Ozaydin"
+
 
 from cleanUpMyMacHelper import cleanUpMyMacHelper
 
