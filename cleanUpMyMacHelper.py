@@ -17,7 +17,7 @@ class cleanUpMyMacHelper(object):
                 status2, output2 = commands.getstatusoutput("du -s /Users/Seric/Library/Caches/com.spotify.client/Data")
                 output = output.split("\t")
                 output2 = output2.split("\t")
-                # os.system("rm -rf /Users/Seric/Library/Caches/com.spotify.client/Data")
+                os.system("rm -rf /Users/Seric/Library/Caches/com.spotify.client/Data")
                 print("Spotify cache successfully erased! -> " + output[0])
                 self.total.append((int(output2[0])/2))
                 return 1
@@ -32,7 +32,7 @@ class cleanUpMyMacHelper(object):
                 status2, output2 = commands.getstatusoutput("du -s /Users/Seric/Library/Caches/com.apple.Safari/WebKitCache")
                 output = output.split("\t")
                 output2 = output2.split("\t")
-                # os.system("rm -rf /Users/Seric/Library/Caches/com.apple.Safari/WebKitCache")
+                os.system("rm -rf /Users/Seric/Library/Caches/com.apple.Safari/WebKitCache")
                 print("Safari Webkit cache successfully erased! -> " + output[0])
                 self.total.append((int(output2[0])/2))
                 return 1
