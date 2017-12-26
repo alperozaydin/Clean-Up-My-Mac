@@ -49,10 +49,14 @@ class cleanUpMyMacHelper(object):
                 output = output.split("\t")
                 output2 = output2.split("\t")
                 os.system("xcrun simctl delete unavailable")
-                print("Unavailable Core Simulators successfully erased! -> " + output[0])
-                self.total.append((int(output2[0])/2))
+                status3, output3 = commands.getstatusoutput("du -s /Users/Seric/Library/Developer/CoreSimulator")
+                output3 = output3.split("\t")
+                if (int(output3[0]) - int(output2[0])) == 0:
+                    print("There is no unavailable Core Simulators file!")
+                    return 1
+                print("Unavailable Core Simulators successfully erased! -> " + str((int(output3[0]) - int(output2[0]))))
+                self.total.append(((int(output3[0]) - int(output2[0]))/2))
                 return 1
-        print("There is no Safari Webkit cache!")
         return 0
 
     @classmethod
