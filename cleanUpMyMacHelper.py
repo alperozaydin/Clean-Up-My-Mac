@@ -39,6 +39,22 @@ class cleanUpMyMacHelper(object):
         print("There is no Safari Webkit cache!")
         return 0
 
+
+    @classmethod
+    def eraseDeveloperCoreSimulator(self):
+        for file in os.listdir("/Users/Seric/Library/Developer"):
+            if file == "CoreSimulator":
+                status, output = commands.getstatusoutput("du -sh /Users/Seric/Library/Developer/CoreSimulator")
+                status2, output2 = commands.getstatusoutput("du -s /Users/Seric/Library/Developer/CoreSimulator")
+                output = output.split("\t")
+                output2 = output2.split("\t")
+                os.system("xcrun simctl delete unavailable")
+                print("Unavailable Core Simulators successfully erased! -> " + output[0])
+                self.total.append((int(output2[0])/2))
+                return 1
+        print("There is no Safari Webkit cache!")
+        return 0
+
     @classmethod
     def totalErasedAmount(self):
         return "Total -> " + str(sum(self.total)/1024) + "MB"

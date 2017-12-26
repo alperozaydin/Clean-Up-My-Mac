@@ -8,5 +8,6 @@ class cleanUpMyMac(object):
 
 	cleanUpMyMacHelper.eraseSpotifyCache()
 	cleanUpMyMacHelper.eraseSafariWebKitCache()
+	cleanUpMyMacHelper.eraseDeveloperCoreSimulator()
 	print(cleanUpMyMacHelper.totalErasedAmount())
 
