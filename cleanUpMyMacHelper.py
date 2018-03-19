@@ -10,6 +10,18 @@ class cleanUpMyMacHelper(object):
     total = []
 
     @classmethod
+    def __init__(self):
+        print("asd")
+        user_selection = raw_input("Press S to sort big files, press d to clean your Mac")
+        if (user_selection == "S" or "s"):
+            cleanUpMyMacHelper.sortBigFolders()
+        elif (user_selection == "D" or "d"):
+            cleanUpMyMacHelper.eraseSpotifyCache()
+            cleanUpMyMacHelper.eraseSafariWebKitCache()
+            cleanUpMyMacHelper.eraseDeveloperCoreSimulator()
+            print(cleanUpMyMacHelper.totalErasedAmount())
+
+    @classmethod
     def eraseSpotifyCache(self):
         for file in os.listdir("//Users/Seric/Library/Caches/com.spotify.client"):
             if file == "Data":
@@ -58,6 +70,19 @@ class cleanUpMyMacHelper(object):
                 self.total.append(((int(output3[0]) - int(output2[0]))/2))
                 return 1
         return 0
+
+    #TODO Display files and folders more than 3 GB.
+    #TODO User can change the "big folder" size to sort
+    @classmethod
+    def sortBigFolders(self):
+        # System Library Folders
+        status, output = commands.getstatusoutput("du -hs /Library/Application\ Support/* | sort -rh | head -5")
+        print("In /Library")
+        print(output)
+
+        status, output = commands.getstatusoutput("du -hs /Users/Seric/Library/Android/sdk/* | sort -rh | head -5")
+        print("In /Android")
+        print(output)
 
     @classmethod
     def totalErasedAmount(self):

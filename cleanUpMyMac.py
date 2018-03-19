@@ -6,8 +6,4 @@ from cleanUpMyMacHelper import cleanUpMyMacHelper
 
 class cleanUpMyMac(object):
 
-	cleanUpMyMacHelper.eraseSpotifyCache()
-	cleanUpMyMacHelper.eraseSafariWebKitCache()
-	cleanUpMyMacHelper.eraseDeveloperCoreSimulator()
-	print(cleanUpMyMacHelper.totalErasedAmount())
-
+	cleanUpMyMacHelper.__init__()
