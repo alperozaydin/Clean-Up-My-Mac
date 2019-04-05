@@ -12,14 +12,20 @@ class cleanUpMyMacHelper(object):
     @classmethod
     def __init__(self):
         print("asd")
-        user_selection = raw_input("Press S to sort big files, press d to clean your Mac")
-        if (user_selection == "S" or "s"):
+        user_selection = raw_input("Press 's' to sort big files, press 'd' to clean your Mac")
+        if (user_selection == "S" or user_selection =="s"):
             cleanUpMyMacHelper.sortBigFolders()
-        elif (user_selection == "D" or "d"):
+        elif (user_selection == "D" or user_selection == "d"):
             cleanUpMyMacHelper.eraseSpotifyCache()
-            cleanUpMyMacHelper.eraseSafariWebKitCache()
-            cleanUpMyMacHelper.eraseDeveloperCoreSimulator()
+            # cleanUpMyMacHelper.eraseSafariWebKitCache()
+            # cleanUpMyMacHelper.eraseDeveloperCoreSimulator()
+            cleanUpMyMacHelper.eraseHomebrew()
             print(cleanUpMyMacHelper.totalErasedAmount())
+
+
+    @classmethod
+    def eraseHomebrew(self):
+        status, output = commands.getstatusoutput("brew cleanup")
 
     @classmethod
     def eraseSpotifyCache(self):
@@ -77,13 +83,15 @@ class cleanUpMyMacHelper(object):
     def sortBigFolders(self):
         # System Library Folders
         status, output = commands.getstatusoutput("du -hs /Library/Application\ Support/* | sort -rh | head -5")
-        print("In /Library")
-        print(output)
+        if "No such file or directory" not in output:
+            print("In /Library")
+            print(output)
 
         status, output = commands.getstatusoutput("du -hs /Users/Seric/Library/Android/sdk/* | sort -rh | head -5")
-        print("In /Android")
-        print(output)
-
+        if "No such file or directory" not in output:
+            print("In /Android")
+            print(output)
+            
     @classmethod
     def totalErasedAmount(self):
         return "Total -> " + str(sum(self.total)/1024) + "MB"
